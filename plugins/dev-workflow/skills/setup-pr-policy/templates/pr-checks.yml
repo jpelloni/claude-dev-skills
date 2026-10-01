@@ -1,0 +1,33 @@
+name: PR checks
+
+on:
+  pull_request:
+    branches: [__BASE_BRANCH__]
+
+jobs:
+  pr-checks:
+    # Job name is the required status check on __BASE_BRANCH__; keep it in sync with branch protection.
+    name: pr-checks
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      # Package-manager setup: keep the block matching the project and delete the others.
+      # pnpm:
+      - uses: pnpm/action-setup@v4
+      # (npm / yarn need no extra setup step.)
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: __NODE_VERSION__
+          cache: __PACKAGE_MANAGER__
+
+      - run: __INSTALL_COMMAND__
+
+      - name: Run unit tests with coverage
+        run: __PACKAGE_MANAGER__ run test:pr
+
+      - name: Check changed files
+        run: node scripts/check-pr.mjs origin/${{ github.base_ref }}

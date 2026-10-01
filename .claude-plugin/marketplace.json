@@ -1,0 +1,14 @@
+{
+  "name": "claude-dev-skills",
+  "description": "Development-workflow Claude Code plugins for JavaScript/TypeScript projects.",
+  "owner": {
+    "name": "Jason Pelloni"
+  },
+  "plugins": [
+    {
+      "name": "dev-workflow",
+      "source": "./plugins/dev-workflow",
+      "description": "Test generation, documentation, and PR-policy skills for JavaScript/TypeScript projects."
+    }
+  ]
+}
