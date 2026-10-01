@@ -57,6 +57,8 @@ project or copy the file over.
 
 ## Validating
 
+The `validate` workflow runs these on every PR and is required to merge into `main`:
+
 ```bash
 claude plugin validate .
 claude plugin validate plugins/dev-workflow
