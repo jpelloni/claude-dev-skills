@@ -1,0 +1,8 @@
+{
+  "name": "aws-dev-workflow",
+  "version": "1.0.0",
+  "description": "AWS development-workflow skills (IAM least-privilege review for JSON/YAML, CloudFormation/SAM, and Terraform).",
+  "author": {
+    "name": "Jason Pelloni"
+  }
+}

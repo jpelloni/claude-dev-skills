@@ -1,6 +1,6 @@
 {
   "name": "claude-dev-skills",
-  "description": "Development-workflow Claude Code plugins: shared cross-language skills plus TypeScript/JavaScript and Python workflow plugins.",
+  "description": "Development-workflow Claude Code plugins: shared cross-language skills, TypeScript/JavaScript and Python workflow plugins, plus AWS IAM review.",
   "owner": {
     "name": "Jason Pelloni"
   },
@@ -19,6 +19,11 @@
       "name": "python-dev-workflow",
       "source": "./plugins/python-dev-workflow",
       "description": "Python test-generation skills (pytest / unittest)"
+    },
+    {
+      "name": "aws-dev-workflow",
+      "source": "./plugins/aws-dev-workflow",
+      "description": "AWS development-workflow skills (IAM least-privilege review for JSON/YAML, CloudFormation/SAM, and Terraform)."
     }
   ]
 }
