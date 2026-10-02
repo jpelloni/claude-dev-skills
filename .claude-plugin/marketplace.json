@@ -1,6 +1,6 @@
 {
   "name": "claude-dev-skills",
-  "description": "Development-workflow Claude Code plugins for JavaScript/TypeScript projects.",
+  "description": "Development-workflow Claude Code plugins for JavaScript/TypeScript and Python projects.",
   "owner": {
     "name": "Jason Pelloni"
   },
@@ -9,6 +9,11 @@
       "name": "dev-workflow",
       "source": "./plugins/dev-workflow",
       "description": "Test generation, documentation, and PR-policy skills for JavaScript/TypeScript projects."
+    },
+    {
+      "name": "python-dev-workflow",
+      "source": "./plugins/python-dev-workflow",
+      "description": "Python test-generation skills (pytest / unittest)"
     }
   ]
 }
