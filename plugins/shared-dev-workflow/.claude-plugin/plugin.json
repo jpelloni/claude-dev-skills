@@ -1,0 +1,8 @@
+{
+  "name": "shared-dev-workflow",
+  "version": "1.0.0",
+  "description": "Cross-language / language-agnostic development-workflow skills (documentation and other shared workflows).",
+  "author": {
+    "name": "Jason Pelloni"
+  }
+}

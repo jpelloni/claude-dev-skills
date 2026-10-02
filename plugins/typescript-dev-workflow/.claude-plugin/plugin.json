@@ -1,0 +1,8 @@
+{
+  "name": "typescript-dev-workflow",
+  "version": "1.1.0",
+  "description": "Jest/Vitest test generation and PR-policy skills for JavaScript/TypeScript projects.",
+  "author": {
+    "name": "Jason Pelloni"
+  }
+}
