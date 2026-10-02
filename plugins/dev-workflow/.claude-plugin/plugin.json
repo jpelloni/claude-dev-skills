@@ -1,8 +1,0 @@
-{
-  "name": "dev-workflow",
-  "version": "1.0.0",
-  "description": "Test generation, documentation, and PR-policy skills for JavaScript/TypeScript projects.",
-  "author": {
-    "name": "Jason Pelloni"
-  }
-}

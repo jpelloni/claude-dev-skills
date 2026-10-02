@@ -14,8 +14,8 @@ Installs these rules into the current repository:
 5. A PR that changes source files also updates `README.md` or `docs/**`.
 
 The rules are enforced by `templates/check-pr.mjs` (next to this file), which runs in CI through
-`templates/pr-checks.yml`. Companion skills: `generate-jest-tests` (rule 3) and `generate-docs`
-(rules 4–5).
+`templates/pr-checks.yml`. Companion skills: `/typescript-dev-workflow:generate-jest-tests`
+(rule 3) and `/shared-dev-workflow:generate-docs` (rules 4–5).
 
 ## 1. Inspect the project
 
@@ -84,9 +84,9 @@ branch protection requires.
 ## 5. Document the policy
 
 - **`CLAUDE.md`:** add (or create the file with) a `## Pull request rules` section listing the
-  five rules, the `test:pr` and `check:pr` commands, pointers to the `generate-jest-tests` and
-  `generate-docs` skills, and this line: "Do not create a PR, or declare PR-bound work finished,
-  while `check:pr` fails."
+  five rules, the `test:pr` and `check:pr` commands, pointers to the
+  `/typescript-dev-workflow:generate-jest-tests` and `/shared-dev-workflow:generate-docs` skills,
+  and this line: "Do not create a PR, or declare PR-bound work finished, while `check:pr` fails."
 - **`README.md`:** add a short "Pull Request Requirements" section with the same rules and
   commands, in the README's existing style.
 - **`.github/pull_request_template.md`:** add a checklist with one item per rule. If a template

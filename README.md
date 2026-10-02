@@ -1,17 +1,22 @@
 # claude-dev-skills
 
 A [Claude Code](https://claude.com/claude-code) plugin marketplace with development-workflow
-skills for JavaScript/TypeScript and Python projects.
+skills for JavaScript/TypeScript and Python projects, plus shared cross-language skills.
 
 ## Plugins
 
-### `dev-workflow`
+### `shared-dev-workflow`
 
 | Skill                                  | What it does                                                                                                                        |
 | -------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
-| `/dev-workflow:generate-jest-tests`    | Writes a full Jest or Vitest suite for a source file, matching the project's layout and ESM/CJS mocking, and iterates until it passes with >= 80% coverage. |
-| `/dev-workflow:generate-docs`          | Adds JSDoc to exported declarations in changed files and updates `README.md` / `docs/**` to match.                                  |
-| `/dev-workflow:setup-pr-policy`        | Installs a PR policy (no TODOs, passing tests, >= 80% coverage on changed files, JSDoc, docs updates), enforced by a check script and a GitHub Actions workflow, with optional branch protection. |
+| `/shared-dev-workflow:generate-docs`   | Adds language-aware code docs (JSDoc for JS/TS, docstrings for Python) to changed source files and updates `README.md` / `docs/**` to match. |
+
+### `typescript-dev-workflow`
+
+| Skill                                          | What it does                                                                                                                        |
+| ---------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
+| `/typescript-dev-workflow:generate-jest-tests` | Writes a full Jest or Vitest suite for a source file, matching the project's layout and ESM/CJS mocking, and iterates until it passes with >= 80% coverage. |
+| `/typescript-dev-workflow:setup-pr-policy`     | Installs a PR policy (no TODOs, passing tests, >= 80% coverage on changed files, JSDoc, docs updates), enforced by a check script and a GitHub Actions workflow, with optional branch protection. |
 
 ### `python-dev-workflow`
 
@@ -28,9 +33,12 @@ In Claude Code:
 
 ```text
 /plugin marketplace add jpelloni/claude-dev-skills
-/plugin install dev-workflow@claude-dev-skills
+/plugin install shared-dev-workflow@claude-dev-skills
+/plugin install typescript-dev-workflow@claude-dev-skills
 /plugin install python-dev-workflow@claude-dev-skills
 ```
+
+Install à la carte if you only need one language or the shared docs skill.
 
 This repository is private, so installing needs git access to it (your GitHub credentials, or
 the credentials VS Code forwards into a devcontainer).
@@ -38,7 +46,7 @@ the credentials VS Code forwards into a devcontainer).
 ### Enable for everyone working on a project
 
 Commit this to the project's `.claude/settings.json`. Claude Code then prompts anyone who
-opens the project, including in a fresh devcontainer, to install the plugin:
+opens the project, including in a fresh devcontainer, to install the plugins:
 
 ```json
 {
@@ -48,21 +56,34 @@ opens the project, including in a fresh devcontainer, to install the plugin:
     }
   },
   "enabledPlugins": {
-    "dev-workflow@claude-dev-skills": true,
+    "shared-dev-workflow@claude-dev-skills": true,
+    "typescript-dev-workflow@claude-dev-skills": true,
     "python-dev-workflow@claude-dev-skills": true
   }
 }
 ```
 
+### Migration from `dev-workflow`
+
+The former `dev-workflow` plugin is renamed to `typescript-dev-workflow`. Update projects that
+still reference the old id:
+
+- Plugin id: `dev-workflow` → `typescript-dev-workflow`
+- Skill invocations: `/dev-workflow:*` → `/typescript-dev-workflow:*`
+- Documentation skill: `/dev-workflow:generate-docs` → `/shared-dev-workflow:generate-docs`
+- In `.claude/settings.json`, replace `dev-workflow@claude-dev-skills` with
+  `typescript-dev-workflow@claude-dev-skills` and add `shared-dev-workflow@claude-dev-skills`
+  if you use generate-docs
+
 ## Updating
 
-Bump `version` in `plugins/dev-workflow/.claude-plugin/plugin.json` or
-`plugins/python-dev-workflow/.claude-plugin/plugin.json` and push. Projects pick up
-the change with `/plugin marketplace update claude-dev-skills`.
+Bump `version` in the relevant
+`plugins/<plugin>/.claude-plugin/plugin.json` and push. Projects pick up the change with
+`/plugin marketplace update claude-dev-skills`.
 
-`skills/setup-pr-policy/templates/check-pr.mjs` is the canonical copy of the PR check script.
-Projects get a copy at setup time, so to roll out a fix, re-run `setup-pr-policy` in each
-project or copy the file over.
+`skills/setup-pr-policy/templates/check-pr.mjs` (under `typescript-dev-workflow`) is the
+canonical copy of the PR check script. Projects get a copy at setup time, so to roll out a fix,
+re-run `setup-pr-policy` in each project or copy the file over.
 
 ## Validating
 
@@ -70,6 +91,7 @@ The `validate` workflow runs these on every PR and is required to merge into `ma
 
 ```bash
 claude plugin validate .
-claude plugin validate plugins/dev-workflow
+claude plugin validate plugins/shared-dev-workflow
+claude plugin validate plugins/typescript-dev-workflow
 claude plugin validate plugins/python-dev-workflow
 ```

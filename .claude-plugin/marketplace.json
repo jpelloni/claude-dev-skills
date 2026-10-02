@@ -1,14 +1,19 @@
 {
   "name": "claude-dev-skills",
-  "description": "Development-workflow Claude Code plugins for JavaScript/TypeScript and Python projects.",
+  "description": "Development-workflow Claude Code plugins: shared cross-language skills plus TypeScript/JavaScript and Python workflow plugins.",
   "owner": {
     "name": "Jason Pelloni"
   },
   "plugins": [
     {
-      "name": "dev-workflow",
-      "source": "./plugins/dev-workflow",
-      "description": "Test generation, documentation, and PR-policy skills for JavaScript/TypeScript projects."
+      "name": "shared-dev-workflow",
+      "source": "./plugins/shared-dev-workflow",
+      "description": "Cross-language / language-agnostic development-workflow skills (documentation and shared workflows)."
+    },
+    {
+      "name": "typescript-dev-workflow",
+      "source": "./plugins/typescript-dev-workflow",
+      "description": "Jest/Vitest test generation and PR-policy skills for JavaScript/TypeScript projects."
     },
     {
       "name": "python-dev-workflow",
