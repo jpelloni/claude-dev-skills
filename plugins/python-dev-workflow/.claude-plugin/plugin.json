@@ -1,0 +1,8 @@
+{
+  "name": "python-dev-workflow",
+  "version": "1.0.0",
+  "description": "Python test-generation skills (pytest / unittest)",
+  "author": {
+    "name": "Jason Pelloni"
+  }
+}

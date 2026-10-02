@@ -1,7 +1,7 @@
 # claude-dev-skills
 
 A [Claude Code](https://claude.com/claude-code) plugin marketplace with development-workflow
-skills for JavaScript/TypeScript projects.
+skills for JavaScript/TypeScript and Python projects.
 
 ## Plugins
 
@@ -13,6 +13,12 @@ skills for JavaScript/TypeScript projects.
 | `/dev-workflow:generate-docs`          | Adds JSDoc to exported declarations in changed files and updates `README.md` / `docs/**` to match.                                  |
 | `/dev-workflow:setup-pr-policy`        | Installs a PR policy (no TODOs, passing tests, >= 80% coverage on changed files, JSDoc, docs updates), enforced by a check script and a GitHub Actions workflow, with optional branch protection. |
 
+### `python-dev-workflow`
+
+| Skill                                         | What it does                                                                                                                        |
+| --------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
+| `/python-dev-workflow:generate-pytest-tests`  | Writes a full pytest or unittest suite for a Python source file, matching the project's layout, fixtures, and mocking, and iterates until it passes with >= 80% coverage. |
+
 The skills read each project's `CLAUDE.md`, README, config, and existing tests, and follow
 them. Put project-specific conventions in `CLAUDE.md` rather than editing the skills.
 
@@ -23,6 +29,7 @@ In Claude Code:
 ```text
 /plugin marketplace add jpelloni/claude-dev-skills
 /plugin install dev-workflow@claude-dev-skills
+/plugin install python-dev-workflow@claude-dev-skills
 ```
 
 This repository is private, so installing needs git access to it (your GitHub credentials, or
@@ -41,14 +48,16 @@ opens the project, including in a fresh devcontainer, to install the plugin:
     }
   },
   "enabledPlugins": {
-    "dev-workflow@claude-dev-skills": true
+    "dev-workflow@claude-dev-skills": true,
+    "python-dev-workflow@claude-dev-skills": true
   }
 }
 ```
 
 ## Updating
 
-Bump `version` in `plugins/dev-workflow/.claude-plugin/plugin.json` and push. Projects pick up
+Bump `version` in `plugins/dev-workflow/.claude-plugin/plugin.json` or
+`plugins/python-dev-workflow/.claude-plugin/plugin.json` and push. Projects pick up
 the change with `/plugin marketplace update claude-dev-skills`.
 
 `skills/setup-pr-policy/templates/check-pr.mjs` is the canonical copy of the PR check script.
@@ -62,4 +71,5 @@ The `validate` workflow runs these on every PR and is required to merge into `ma
 ```bash
 claude plugin validate .
 claude plugin validate plugins/dev-workflow
+claude plugin validate plugins/python-dev-workflow
 ```
