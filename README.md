@@ -1,7 +1,8 @@
 # claude-dev-skills
 
 A [Claude Code](https://claude.com/claude-code) plugin marketplace with development-workflow
-skills for JavaScript/TypeScript and Python projects, plus shared cross-language skills.
+skills for JavaScript/TypeScript and Python projects, shared cross-language skills, and AWS
+IAM review.
 
 ## Plugins
 
@@ -24,6 +25,12 @@ skills for JavaScript/TypeScript and Python projects, plus shared cross-language
 | --------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
 | `/python-dev-workflow:generate-pytest-tests`  | Writes a full pytest or unittest suite for a Python source file, matching the project's layout, fixtures, and mocking, and iterates until it passes with >= 80% coverage. |
 
+### `aws-dev-workflow`
+
+| Skill                                               | What it does                                                                                                                        |
+| --------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
+| `/aws-dev-workflow:review-iam-least-privilege`      | Reviews in-repo IAM (JSON/YAML policies, CloudFormation/SAM `AWS::IAM::*`, Terraform `aws_iam_*`) for least-privilege issues, ranks findings, and suggests tighter patches — applies only when you ask. |
+
 The skills read each project's `CLAUDE.md`, README, config, and existing tests, and follow
 them. Put project-specific conventions in `CLAUDE.md` rather than editing the skills.
 
@@ -36,9 +43,10 @@ In Claude Code:
 /plugin install shared-dev-workflow@claude-dev-skills
 /plugin install typescript-dev-workflow@claude-dev-skills
 /plugin install python-dev-workflow@claude-dev-skills
+/plugin install aws-dev-workflow@claude-dev-skills
 ```
 
-Install à la carte if you only need one language or the shared docs skill.
+Install à la carte if you only need one language, shared docs, or AWS IAM review.
 
 This repository is private, so installing needs git access to it (your GitHub credentials, or
 the credentials VS Code forwards into a devcontainer).
@@ -58,7 +66,8 @@ opens the project, including in a fresh devcontainer, to install the plugins:
   "enabledPlugins": {
     "shared-dev-workflow@claude-dev-skills": true,
     "typescript-dev-workflow@claude-dev-skills": true,
-    "python-dev-workflow@claude-dev-skills": true
+    "python-dev-workflow@claude-dev-skills": true,
+    "aws-dev-workflow@claude-dev-skills": true
   }
 }
 ```
@@ -94,4 +103,5 @@ claude plugin validate .
 claude plugin validate plugins/shared-dev-workflow
 claude plugin validate plugins/typescript-dev-workflow
 claude plugin validate plugins/python-dev-workflow
+claude plugin validate plugins/aws-dev-workflow
 ```
