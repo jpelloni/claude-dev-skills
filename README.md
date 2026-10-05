@@ -1,16 +1,17 @@
 # claude-dev-skills
 
 A [Claude Code](https://claude.com/claude-code) plugin marketplace with development-workflow
-skills for JavaScript/TypeScript and Python projects, shared cross-language skills, and AWS
-IAM and Terraform security review.
+skills for JavaScript/TypeScript and Python projects, shared cross-language skills
+(documentation and GitHub Actions review), and AWS IAM and Terraform security review.
 
 ## Plugins
 
 ### `shared-dev-workflow`
 
-| Skill                                  | What it does                                                                                                                        |
-| -------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
-| `/shared-dev-workflow:generate-docs`   | Adds language-aware code docs (JSDoc for JS/TS, docstrings for Python) to changed source files and updates `README.md` / `docs/**` to match. |
+| Skill                                          | What it does                                                                                                                        |
+| ---------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
+| `/shared-dev-workflow:generate-docs`           | Adds language-aware code docs (JSDoc for JS/TS, docstrings for Python) to changed source files and updates `README.md` / `docs/**` to match. |
+| `/shared-dev-workflow:review-github-actions`   | Reviews in-repo GitHub Actions for untrusted checkout, script injection, broad token permissions, unpinned actions, and secret leakage, ranks findings, and suggests YAML patches — applies only when you ask. |
 
 ### `typescript-dev-workflow`
 
