@@ -2,7 +2,7 @@
 
 A [Claude Code](https://claude.com/claude-code) plugin marketplace with development-workflow
 skills for JavaScript/TypeScript and Python projects, shared cross-language skills, and AWS
-IAM review.
+IAM and Terraform security review.
 
 ## Plugins
 
@@ -30,6 +30,7 @@ IAM review.
 | Skill                                               | What it does                                                                                                                        |
 | --------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
 | `/aws-dev-workflow:review-iam-least-privilege`      | Reviews in-repo IAM (JSON/YAML policies, CloudFormation/SAM `AWS::IAM::*`, Terraform `aws_iam_*`) for least-privilege issues, ranks findings, and suggests tighter patches — applies only when you ask. |
+| `/aws-dev-workflow:review-terraform-security`       | Reviews in-repo Terraform for exposure, encryption, backup, and secret issues beyond IAM (public security groups and databases, public buckets, IMDSv1, plaintext secrets), ranks findings, and suggests HCL patches — applies only when you ask. |
 
 The skills read each project's `CLAUDE.md`, README, config, and existing tests, and follow
 them. Put project-specific conventions in `CLAUDE.md` rather than editing the skills.
