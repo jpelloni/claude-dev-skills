@@ -96,6 +96,30 @@ Bump `version` in the relevant
 canonical copy of the PR check script. Projects get a copy at setup time, so to roll out a fix,
 re-run `setup-pr-policy` in each project or copy the file over.
 
+## Evals
+
+`claude plugin validate` checks manifests only. Behavior checks live in each plugin's
+`evals/` directory and run with `claude plugin eval` from that plugin's root. Each case
+starts in an empty workspace, so the plugin does not need to be installed into another repo.
+
+`plugins/typescript-dev-workflow/evals/generate-jest-tests/` is the example: a fixture
+CommonJS project, a user-style prompt for `src/greet.js`, and graders for the skill call,
+the new test file, and the coverage handoff. `runs` is 1. Pass `--scaffold` so `fixture.sh`
+can copy the project in and install Jest.
+
+```bash
+cd plugins/typescript-dev-workflow
+claude plugin eval . \
+  --trust-plugin \
+  --scaffold \
+  --case generate-jest-tests \
+  --no-publish \
+  --allow-tools Write Edit "Bash(npm *)"
+```
+
+Add `--ablation none` to skip the no-plugin baseline while iterating. Results land in
+`evals/results/` and are gitignored.
+
 ## Validating
 
 The `validate` workflow runs these on every PR and is required to merge into `main`:
