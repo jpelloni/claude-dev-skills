@@ -1,6 +1,6 @@
 {
   "name": "claude-dev-skills",
-  "description": "Development-workflow Claude Code plugins: shared cross-language skills, TypeScript/JavaScript and Python workflow plugins, plus AWS IAM review.",
+  "description": "Development-workflow Claude Code plugins: shared cross-language skills, TypeScript/JavaScript and Python workflow plugins, plus AWS IAM and Terraform security review.",
   "owner": {
     "name": "Jason Pelloni"
   },
@@ -23,7 +23,7 @@
     {
       "name": "aws-dev-workflow",
       "source": "./plugins/aws-dev-workflow",
-      "description": "AWS development-workflow skills (IAM least-privilege review for JSON/YAML, CloudFormation/SAM, and Terraform)."
+      "description": "AWS development-workflow skills: IAM least-privilege review, and Terraform security review (exposure, encryption, backups, secrets)."
     }
   ]
 }
