@@ -5,7 +5,7 @@
 export const project = {
   title: 'Claude Dev Skills — Plugin Marketplace',
   description:
-    'Built a private Claude Code plugin marketplace that packages development workflows as installable skills. Split the tools into TypeScript, Python, AWS, and shared plugins: Jest and pytest generation, pull-request quality gates, JSDoc and docstring documentation, GitHub Actions review, IAM least-privilege and Terraform security review, and API contract review against a checked-in OpenAPI document. Skills follow each repository\'s conventions, verify the result, and change files only when asked.',
+    'Built a private Claude Code plugin marketplace that packages development workflows as installable skills. Split the tools into TypeScript, Python, AWS, and shared plugins: Jest and pytest generation, pull-request quality gates, JSDoc and docstring documentation, GitHub Actions review, IAM least-privilege and Terraform security review, and API contract and database-migration reviews. Skills follow each repository\'s conventions, verify the result, and change files only when asked.',
   technologies: [
     'Claude Code',
     'Node.js',
