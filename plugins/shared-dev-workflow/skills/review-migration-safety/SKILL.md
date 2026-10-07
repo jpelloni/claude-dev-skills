@@ -41,7 +41,7 @@ say so and stop.
   for that column name. If the user named only the migration, also search application code
   that is actually in the tree. Finding no readers only counts when you found the code that
   used to read the column and this change removes it.
-  Read the whole migration, not only the diff hunk.
+- Read the whole migration, not only the diff hunk.
 - Skip tests, lockfiles, and generated clients unless the user names them.
 - If the change has no migration, say so and stop. An ORM model edit with no migration is
   not this review.
@@ -96,7 +96,7 @@ PostgreSQL:
 
 | Pattern | Typical severity | Why it hurts |
 | ------- | ---------------- | ------------ |
-| `ADD COLUMN ... NOT NULL` without a default on an existing table | critical | Existing rows fail the constraint, or the table rewrites under a strong lock |
+| `ADD COLUMN ... NOT NULL` without a default on an existing table | critical | Existing rows have no value, so PostgreSQL rejects the statement |
 | `ADD COLUMN` nullable, or `ADD COLUMN` with a constant (non-volatile) default, including `NOT NULL` plus that default, on PostgreSQL 11+ | do not flag | Metadata-only. A volatile default (`now()`, a function) is a warn: it rewrites the table |
 | `ALTER COLUMN ... TYPE`, or a type change that is not binary-compatible | warn | Rewrite plus `AccessExclusiveLock`. Suggest a new column, backfill, then contract |
 | `SET NOT NULL` without an existing `NOT VALID` check that already proves the column | warn | Full scan under a lock. Suggest adding a `NOT VALID` check, validating it, then setting not null |
