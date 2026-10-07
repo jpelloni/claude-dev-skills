@@ -96,6 +96,35 @@ Bump `version` in the relevant
 canonical copy of the PR check script. Projects get a copy at setup time, so to roll out a fix,
 re-run `setup-pr-policy` in each project or copy the file over.
 
+## Evals
+
+`claude plugin validate` checks manifests only. Behavior checks live in each plugin's
+`evals/` directory and run with `claude plugin eval` from that plugin's root. Each case
+starts in an empty workspace, so the plugin does not need to be installed into another repo.
+
+Every case sets `runs: 1`. Pass `--scaffold` so `fixture.sh` can seed the workspace. Add
+`--ablation none` while iterating. Results land in that plugin's `evals/results/` and are
+gitignored. The pytest case needs `python3-venv` on the machine that runs the scaffold.
+
+| Case | Plugin directory | Extra flags |
+| --- | --- | --- |
+| `generate-docs` | `plugins/shared-dev-workflow` | `--allow-tools Write Edit "Bash(git *)"` |
+| `review-github-actions` | `plugins/shared-dev-workflow` | none |
+| `generate-jest-tests` | `plugins/typescript-dev-workflow` | `--allow-tools Write Edit "Bash(npm *)"` |
+| `setup-pr-policy` | `plugins/typescript-dev-workflow` | `--allow-tools Write Edit "Bash(npm *)" "Bash(node *)" "Bash(git *)"` |
+| `generate-pytest-tests` | `plugins/python-dev-workflow` | `--allow-tools Write Edit "Bash(.venv/bin/pytest *)" "Bash(python *)" "Bash(python3 *)"` |
+| `review-iam-least-privilege` | `plugins/aws-dev-workflow` | none |
+| `review-terraform-security` | `plugins/aws-dev-workflow` | none |
+
+```bash
+cd plugins/aws-dev-workflow
+claude plugin eval . \
+  --trust-plugin \
+  --scaffold \
+  --case review-terraform-security \
+  --no-publish
+```
+
 ## Validating
 
 The `validate` workflow runs these on every PR and is required to merge into `main`:

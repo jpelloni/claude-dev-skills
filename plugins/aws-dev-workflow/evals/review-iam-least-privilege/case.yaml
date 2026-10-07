@@ -1,0 +1,11 @@
+schema_version: "1.1"
+name: review-iam-least-privilege
+description: >
+  Eval for review-iam-least-privilege. From plugins/aws-dev-workflow:
+  claude plugin eval . --trust-plugin --scaffold --case review-iam-least-privilege
+  --no-publish
+tags: [example]
+runs: 1
+plugins: ["../.."]
+context:
+  scaffold_script: fixture.sh

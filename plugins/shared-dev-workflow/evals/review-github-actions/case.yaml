@@ -1,0 +1,11 @@
+schema_version: "1.1"
+name: review-github-actions
+description: >
+  Eval for review-github-actions. From plugins/shared-dev-workflow:
+  claude plugin eval . --trust-plugin --scaffold --case review-github-actions
+  --no-publish
+tags: [example]
+runs: 1
+plugins: ["../.."]
+context:
+  scaffold_script: fixture.sh
