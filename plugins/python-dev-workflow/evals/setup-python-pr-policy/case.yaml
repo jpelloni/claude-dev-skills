@@ -1,0 +1,11 @@
+schema_version: "1.1"
+name: setup-python-pr-policy
+description: >
+  Eval for setup-python-pr-policy. Requires python3-venv. From plugins/python-dev-workflow:
+  claude plugin eval . --trust-plugin --scaffold --case setup-python-pr-policy
+  --no-publish --allow-tools Write Edit "Bash(make *)" "Bash(.venv/bin/pytest *)" "Bash(python *)" "Bash(python3 *)" "Bash(git *)"
+tags: [example]
+runs: 1
+plugins: ["../.."]
+context:
+  scaffold_script: fixture.sh

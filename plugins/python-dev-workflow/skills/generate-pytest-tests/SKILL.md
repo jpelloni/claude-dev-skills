@@ -104,9 +104,9 @@ tests (or clearly documents that as the standard).
 
 - Run the new or updated test file through the project's test script, for example
   `pytest path/to/test_file.py` or `python -m pytest path/to/test_file.py`.
-- Check coverage for the target. Aim for >= 80% lines, statements, functions, and branches
-  when the tooling reports them. Run with coverage limited to the target, for example
-  `pytest --cov=<module.path> --cov-report=term-missing path/to/test_file.py`.
+- Check coverage for the target. Aim for >= 80% line and branch coverage, the bar used by
+  `setup-python-pr-policy`. Run with coverage limited to the target, for example
+  `pytest --cov=<module.path> --cov-branch --cov-report=term-missing path/to/test_file.py`.
 - Run the project's lint or type-check script if one exists for tests, and fix violations in
   the test file.
 - Iterate until the tests pass, coverage is at or above 80%, and lint is clean.
