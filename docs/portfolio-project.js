@@ -5,12 +5,13 @@
 export const project = {
   title: 'Claude Dev Skills — Plugin Marketplace',
   description:
-    'Built a private Claude Code plugin marketplace that packages senior-level development workflows as installable skills. Split language-specific and shared tooling into focused plugins (TypeScript, Python, AWS, shared), including Jest/Vitest test generation, cross-language documentation, PR quality gates, pytest coverage workflows, a Python PR policy for docstrings and line and branch coverage, an IAM least-privilege reviewer for JSON/YAML, CloudFormation/SAM, and Terraform, a Terraform security reviewer for public exposure, encryption, backups, and plaintext secrets, a GitHub Actions reviewer for untrusted pull requests, token permissions, and unpinned actions, and an API contract reviewer for breaking handler changes against a checked-in OpenAPI document. Designed for real repo conventions, iterative verification, and portfolio-ready cloud/backend practice.',
+    'Built a private Claude Code plugin marketplace that packages development workflows as installable skills. Split the tools into TypeScript, Python, AWS, and shared plugins: Jest and pytest generation, pull-request quality gates, JSDoc and docstring documentation, GitHub Actions review, IAM least-privilege and Terraform security review, and API contract review against a checked-in OpenAPI document. Skills follow each repository\'s conventions, verify the result, and change files only when asked.',
   technologies: [
     'Claude Code',
     'Node.js',
     'TypeScript',
     'Python',
+    'OpenAPI',
     'AWS IAM',
     'Terraform',
     'GitHub Actions',
