@@ -31,4 +31,6 @@ jobs:
           done
 
       - name: Check PR script template syntax
-        run: node --check plugins/typescript-dev-workflow/skills/setup-pr-policy/templates/check-pr.mjs
+        run: |
+          node --check plugins/typescript-dev-workflow/skills/setup-pr-policy/templates/check-pr.mjs
+          python3 -m py_compile plugins/python-dev-workflow/skills/setup-python-pr-policy/templates/check_pr.py

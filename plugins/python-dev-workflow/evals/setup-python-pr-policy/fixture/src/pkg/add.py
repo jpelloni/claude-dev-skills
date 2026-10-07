@@ -1,0 +1,6 @@
+"""Addition helpers."""
+
+
+def add(left, right):
+    """Return the sum of two numbers."""
+    return left + right

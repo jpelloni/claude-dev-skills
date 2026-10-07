@@ -24,7 +24,8 @@ skills for JavaScript/TypeScript and Python projects, shared cross-language skil
 
 | Skill                                         | What it does                                                                                                                        |
 | --------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
-| `/python-dev-workflow:generate-pytest-tests`  | Writes a full pytest or unittest suite for a Python source file, matching the project's layout, fixtures, and mocking, and iterates until it passes with >= 80% coverage. |
+| `/python-dev-workflow:generate-pytest-tests`   | Writes a full pytest or unittest suite for a Python source file, matching the project's layout, fixtures, and mocking, and iterates until it passes with >= 80% coverage. |
+| `/python-dev-workflow:setup-python-pr-policy`  | Installs a Python PR policy (no TODOs, passing tests, >= 80% line and branch coverage on changed files, docstrings, docs updates), enforced by a check script and a GitHub Actions workflow, with optional branch protection. |
 
 ### `aws-dev-workflow`
 
@@ -92,9 +93,10 @@ Bump `version` in the relevant
 `plugins/<plugin>/.claude-plugin/plugin.json` and push. Projects pick up the change with
 `/plugin marketplace update claude-dev-skills`.
 
-`skills/setup-pr-policy/templates/check-pr.mjs` (under `typescript-dev-workflow`) is the
-canonical copy of the PR check script. Projects get a copy at setup time, so to roll out a fix,
-re-run `setup-pr-policy` in each project or copy the file over.
+`skills/setup-pr-policy/templates/check-pr.mjs` (under `typescript-dev-workflow`) and
+`skills/setup-python-pr-policy/templates/check_pr.py` (under `python-dev-workflow`) are the
+canonical copies of the PR check scripts. Projects get a copy at setup time, so to roll out a
+fix, re-run the setup skill in each project or copy the file over.
 
 ## Evals
 
@@ -113,6 +115,7 @@ gitignored. The pytest case needs `python3-venv` on the machine that runs the sc
 | `generate-jest-tests` | `plugins/typescript-dev-workflow` | `--allow-tools Write Edit "Bash(npm *)"` |
 | `setup-pr-policy` | `plugins/typescript-dev-workflow` | `--allow-tools Write Edit "Bash(npm *)" "Bash(node *)" "Bash(git *)"` |
 | `generate-pytest-tests` | `plugins/python-dev-workflow` | `--allow-tools Write Edit "Bash(.venv/bin/pytest *)" "Bash(python *)" "Bash(python3 *)"` |
+| `setup-python-pr-policy` | `plugins/python-dev-workflow` | `--allow-tools Write Edit "Bash(make *)" "Bash(.venv/bin/pytest *)" "Bash(python *)" "Bash(python3 *)" "Bash(git *)"` |
 | `review-iam-least-privilege` | `plugins/aws-dev-workflow` | none |
 | `review-terraform-security` | `plugins/aws-dev-workflow` | none |
 

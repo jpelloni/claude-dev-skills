@@ -1,0 +1,28 @@
+name: PR checks
+
+on:
+  pull_request:
+    branches: [__BASE_BRANCH__]
+
+jobs:
+  pr-checks:
+    # Job name is the required status check on __BASE_BRANCH__; keep it in sync with branch protection.
+    name: pr-checks
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "__PYTHON_VERSION__"
+
+      - name: Install dependencies
+        run: __INSTALL_COMMAND__
+
+      - name: Run unit tests with coverage
+        run: __TEST_COMMAND__
+
+      - name: Check changed files
+        run: python scripts/check_pr.py origin/${{ github.base_ref }}
