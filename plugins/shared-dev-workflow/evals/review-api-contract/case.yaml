@@ -1,0 +1,11 @@
+schema_version: "1.1"
+name: review-api-contract
+description: >
+  Eval for review-api-contract. From plugins/shared-dev-workflow:
+  claude plugin eval . --trust-plugin --scaffold --case review-api-contract
+  --no-publish
+tags: [example]
+runs: 1
+plugins: ["../.."]
+context:
+  scaffold_script: fixture.sh
