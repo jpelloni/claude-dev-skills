@@ -102,23 +102,28 @@ re-run `setup-pr-policy` in each project or copy the file over.
 `evals/` directory and run with `claude plugin eval` from that plugin's root. Each case
 starts in an empty workspace, so the plugin does not need to be installed into another repo.
 
-`plugins/typescript-dev-workflow/evals/generate-jest-tests/` is the example: a fixture
-CommonJS project, a user-style prompt for `src/greet.js`, and graders for the skill call,
-the new test file, and the coverage handoff. `runs` is 1. Pass `--scaffold` so `fixture.sh`
-can copy the project in and install Jest.
+Every case sets `runs: 1`. Pass `--scaffold` so `fixture.sh` can seed the workspace. Add
+`--ablation none` while iterating. Results land in that plugin's `evals/results/` and are
+gitignored. The pytest case needs `python3-venv` on the machine that runs the scaffold.
+
+| Case | Plugin directory | Extra flags |
+| --- | --- | --- |
+| `generate-docs` | `plugins/shared-dev-workflow` | `--allow-tools Write Edit "Bash(git *)"` |
+| `review-github-actions` | `plugins/shared-dev-workflow` | none |
+| `generate-jest-tests` | `plugins/typescript-dev-workflow` | `--allow-tools Write Edit "Bash(npm *)"` |
+| `setup-pr-policy` | `plugins/typescript-dev-workflow` | `--allow-tools Write Edit "Bash(npm *)" "Bash(node *)" "Bash(git *)"` |
+| `generate-pytest-tests` | `plugins/python-dev-workflow` | `--allow-tools Write Edit "Bash(.venv/bin/pytest *)" "Bash(python *)" "Bash(python3 *)"` |
+| `review-iam-least-privilege` | `plugins/aws-dev-workflow` | none |
+| `review-terraform-security` | `plugins/aws-dev-workflow` | none |
 
 ```bash
-cd plugins/typescript-dev-workflow
+cd plugins/aws-dev-workflow
 claude plugin eval . \
   --trust-plugin \
   --scaffold \
-  --case generate-jest-tests \
-  --no-publish \
-  --allow-tools Write Edit "Bash(npm *)"
+  --case review-terraform-security \
+  --no-publish
 ```
-
-Add `--ablation none` to skip the no-plugin baseline while iterating. Results land in
-`evals/results/` and are gitignored.
 
 ## Validating
 
