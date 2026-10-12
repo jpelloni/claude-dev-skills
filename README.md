@@ -2,7 +2,7 @@
 
 A [Claude Code](https://claude.com/claude-code) plugin marketplace with development-workflow
 skills for JavaScript/TypeScript and Python projects, shared cross-language skills
-(documentation, GitHub Actions review, API contract review, and migration safety review), and AWS IAM and Terraform security review.
+(documentation, GitHub Actions review, API contract review, migration safety review, and dependency review), and AWS IAM and Terraform security review.
 
 ## Plugins
 
@@ -14,6 +14,7 @@ skills for JavaScript/TypeScript and Python projects, shared cross-language skil
 | `/shared-dev-workflow:review-github-actions`   | Reviews in-repo GitHub Actions for untrusted checkout, script injection, broad token permissions, unpinned actions, and secret leakage, ranks findings, and suggests YAML patches — applies only when you ask. |
 | `/shared-dev-workflow:review-api-contract`     | Reviews changed HTTP handlers against the checked-in OpenAPI contract for missing auth, wrong status codes, unbounded lists, and breaking request or response changes — applies only when you ask, and does not invent a spec. |
 | `/shared-dev-workflow:review-migration-safety` | Reviews changed database migrations for destructive DDL, missing downgrades, and lock-heavy index or column changes, ranks findings, and suggests a patch — applies only when you ask. |
+| `/shared-dev-workflow:review-dependencies`     | Reviews changed npm, pnpm, yarn, and Python manifests and lockfiles for lockfile drift, install scripts, git or file dependencies, and unpinned ranges where the project pins — applies only when you ask, and does not invent CVEs. |
 
 ### `typescript-dev-workflow`
 
@@ -116,6 +117,7 @@ gitignored. The pytest case needs `python3-venv` on the machine that runs the sc
 | `review-github-actions` | `plugins/shared-dev-workflow` | none |
 | `review-api-contract` | `plugins/shared-dev-workflow` | none |
 | `review-migration-safety` | `plugins/shared-dev-workflow` | none |
+| `review-dependencies` | `plugins/shared-dev-workflow` | none |
 | `generate-jest-tests` | `plugins/typescript-dev-workflow` | `--allow-tools Write Edit "Bash(npm *)"` |
 | `setup-pr-policy` | `plugins/typescript-dev-workflow` | `--allow-tools Write Edit "Bash(npm *)" "Bash(node *)" "Bash(git *)"` |
 | `generate-pytest-tests` | `plugins/python-dev-workflow` | `--allow-tools Write Edit "Bash(.venv/bin/pytest *)" "Bash(python *)" "Bash(python3 *)"` |

@@ -1,7 +1,7 @@
 {
   "name": "shared-dev-workflow",
-  "version": "1.3.0",
-  "description": "Cross-language development-workflow skills: documentation, GitHub Actions review, API contract review, and migration safety review.",
+  "version": "1.4.0",
+  "description": "Cross-language development-workflow skills: documentation, GitHub Actions review, API contract review, migration safety review, and dependency review.",
   "author": {
     "name": "Jason Pelloni"
   }

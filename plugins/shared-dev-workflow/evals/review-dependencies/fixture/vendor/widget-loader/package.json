@@ -1,0 +1,7 @@
+{
+  "name": "widget-loader",
+  "version": "1.0.0",
+  "scripts": {
+    "postinstall": "node install-hook.js"
+  }
+}
