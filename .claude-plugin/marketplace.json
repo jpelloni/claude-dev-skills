@@ -1,6 +1,6 @@
 {
   "name": "claude-dev-skills",
-  "description": "Development-workflow Claude Code plugins: shared cross-language skills (documentation, GitHub Actions review, and API contract review), TypeScript/JavaScript and Python workflow plugins, plus AWS IAM and Terraform security review.",
+  "description": "Development-workflow Claude Code plugins: shared cross-language skills (documentation, GitHub Actions review, API contract review, and migration safety review), TypeScript/JavaScript and Python workflow plugins, plus AWS IAM and Terraform security review.",
   "owner": {
     "name": "Jason Pelloni"
   },
@@ -8,7 +8,7 @@
     {
       "name": "shared-dev-workflow",
       "source": "./plugins/shared-dev-workflow",
-      "description": "Cross-language development-workflow skills: documentation, GitHub Actions review, and API contract review."
+      "description": "Cross-language development-workflow skills: documentation, GitHub Actions review, API contract review, and migration safety review."
     },
     {
       "name": "typescript-dev-workflow",

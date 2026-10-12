@@ -1,0 +1,11 @@
+schema_version: "1.1"
+name: review-migration-safety
+description: >
+  Eval for review-migration-safety. From plugins/shared-dev-workflow:
+  claude plugin eval . --trust-plugin --scaffold --case review-migration-safety
+  --no-publish
+tags: [example]
+runs: 1
+plugins: ["../.."]
+context:
+  scaffold_script: fixture.sh
