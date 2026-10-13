@@ -24,25 +24,26 @@ npm, pnpm, yarn, and Python, and stop.
 
 ## 1. Find the target files
 
-- If the user named files or a directory, use those and skip the rest of this step.
-- Otherwise find the base branch: the ref the user gives, or
-  `git symbolic-ref --short refs/remotes/origin/HEAD`. Then collect everything changed against
-  it, including uncommitted and untracked work:
+- If the user named files or a directory, that is the scope. Otherwise find the base
+  branch: the ref the user gives, or `git symbolic-ref --short refs/remotes/origin/HEAD`.
+  Then collect everything changed against it, including uncommitted and untracked work:
 
   ```bash
   git diff --name-only --diff-filter=ACMR --merge-base <base>
   git ls-files --others --exclude-standard
   ```
 
-- **Include** manifests and lockfiles from that set (or from the user-named scope):
+  Keep manifests and lockfiles from that set:
   - npm / pnpm / yarn: `package.json`, `package-lock.json`, `npm-shrinkwrap.json`,
     `pnpm-lock.yaml`, `yarn.lock`, and `.npmrc` when it sets a registry.
   - Python: `pyproject.toml`, `poetry.lock`, `uv.lock`, `pdm.lock`, `Pipfile`,
     `Pipfile.lock`, `requirements*.txt`, `requirements.in`, `requirements/*.txt`,
     `requirements/*.in`, and `setup.cfg` / `setup.py` only for `install_requires`.
-- When a manifest changes, also read the lockfile the project uses even if that lockfile
-  is unchanged. When a specifier is `file:`, `link:`, or a path, read that package's
-  manifest inside the repo even if the user did not name it.
+- Naming a file does not end the read. From every manifest in scope, also read the lockfile
+  the project uses even when that lockfile is unchanged and was not named. When a specifier
+  is `file:`, `link:`, or a path, read that package's manifest inside the repo even when the
+  user did not name it and the root specifier did not change. A changed install script in
+  that path package is part of the review.
 - Read the whole manifest, not only the diff hunk. Direct dependencies are the ones in
   `dependencies`, `devDependencies`, `optionalDependencies`, `peerDependencies`,
   Poetry/uv dependency tables, `Pipfile` packages, `install_requires`, and requirement lines.
@@ -74,7 +75,7 @@ manifest instead of guessing what it runs.
 
 | Pattern | Typical severity | Why it hurts |
 | ------- | ---------------- | ------------ |
-| New or changed `preinstall`, `install`, `postinstall`, or `prepare` on the root package, or on a `file:` / path package this change adds | critical | The package manager runs it on install, before tests |
+| New or changed `preinstall`, `install`, `postinstall`, or `prepare` on the root package, or on a `file:` / path package in the review | critical | The package manager runs it on install, before tests. Score an existing path package whose script changed, not only a package this change adds |
 | A `file:` or path dependency whose manifest you cannot read | warn | The install script would be invisible. Say which path is missing |
 | `test`, `build`, `start`, or `lint` scripts | do not flag | They do not run on install |
 
